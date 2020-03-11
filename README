@@ -1,0 +1,43 @@
+lz4-java-ipp
+-------------
+
+lz4-java-binding use intel IPP(http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/16233/l_ipp_2020.0.166.tgz) lib
+
+
+Install IPP
+--------------
+download IPP from intel site and install it
+
+IPP is free software, you need not install intel c++ compiler to install ipp.
+
+Build lz4 link with IPP
+-----------------------
+1. get patch for lz4 source code
+   the patch located in ipp installed component :
+
+   #ls /opt/intel/ipp/components/
+   components_and_examples_and.tgz  components_and_examples_lin_iss.tgz  components_and_examples_lin_ps.tgz
+
+   after install ipp, you need unarchive these .tgz.
+
+  then the patch file located in :
+
+  #ls /opt/intel/ipp/components/components/interfaces/ipp_lz4/
+  lz4-1.7.5.patch  lz4-1.8.1.2.patch  readme.html
+
+2. download lz4 source code with target version (either 1.7.5 or 1.8.1.2 are valid)
+
+3. patch the lz4 code:
+   change into lz4 source code dir, then execute:
+   patch -p1 < /opt/intel/ipp/components/components/interfaces/ipp_lz4/lz4-1.7.5.patch
+
+4. build the lz4 library and executable:
+
+   source /opt/intel/compilers_and_libraries_<version.update.build>/linux/ipp/bin/ippvars.sh intel64
+   export CFLAGS="-O3 -DWITH_IPP -I$IPPROOT/include"
+   make WITH_IPP=yes ARCH=intel64
+
+Build JNI binding
+-----------------
+
+   cd jni && make
