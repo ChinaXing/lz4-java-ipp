@@ -3,6 +3,7 @@ lz4-java-ipp
 
 lz4-java-binding use intel IPP(http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/16233/l_ipp_2020.0.166.tgz) lib
 
+Reference: https://software.intel.com/en-us/articles/building-a-faster-lz4-with-intel-integrated-performance-primitives
 
 Install IPP
 --------------
